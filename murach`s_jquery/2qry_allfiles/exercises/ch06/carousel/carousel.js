@@ -1,8 +1,8 @@
 $(document).ready(function() {
-		   
+
 	var slider = $("#image_list");                     // slider = ul element
 	var leftProperty, newleftProperty;
-		
+
 	// the click event handler for the right button						
 	$("#right_button").click(function() { 
 		// get value of current left property
@@ -10,8 +10,8 @@ $(document).ready(function() {
 		// determine new value of left property
 		if (leftProperty - 300 <= -900) {
 			newLeftProperty = 0; }
-		else {
-			newLeftProperty = leftProperty - 300; }
+			else {
+				newLeftProperty = leftProperty - 300; }
 		// use the animate function to change the left property
 		slider.animate( {left: newLeftProperty}, 1000);
 	});  // end click
@@ -22,14 +22,22 @@ $(document).ready(function() {
 		leftProperty = parseInt(slider.css("left"));
 		
 		// determine new value of left property
-		if (leftProperty < 0) {
-			newLeftProperty = leftProperty + 300;
+		if (leftProperty <= 0 && leftProperty >-900 ) {
+			newLeftProperty = leftProperty - 300;
+			console.log(1);
+
+			if(leftProperty === -600){
+				newLeftProperty = 0;
+				console.log(2);
+			}
+
 		}
-		else {
-			newLeftProperty = 0;
-		}
+					slider.animate( {left: newLeftProperty}, 1000);				
+		
+
+		console.log(newLeftProperty);
+		console.log(leftProperty);
 		
 		// use the animate function to change the left property
-		slider.animate( {left: newLeftProperty}, 1000);				
 	});  // end click		
 }); // end ready
